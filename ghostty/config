@@ -1,0 +1,34 @@
+theme = cyberdream
+
+font-family = "FiraCode Nerd Font Bold"
+font-size = 12
+font-feature=-calt 
+font-feature=-liga
+font-feature=-dlig
+
+background-opacity = 0.9
+background-blur = 
+
+macos-titlebar-style = transparent
+macos-icon = retro
+macos-icon-frame = plastic
+
+mouse-hide-while-typing = true
+
+window-decoration = true
+window-inherit-working-directory = true
+window-theme = ghostty
+window-save-state = always
+
+shell-integration = zsh
+
+bold-is-bright = true
+
+auto-update = download
+
+quit-after-last-window-closed = false
+
+keybind = super+ctrl+p=scroll_page_up
+keybind = super+ctrl+n=scroll_page_down
+
+command = ~/scripts/tmux_session.sh
