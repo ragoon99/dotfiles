@@ -1,0 +1,39 @@
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
+
+# yabai -m config --space 3 layout float
+
+yabai -m config layout bsp
+
+yabai -m config top_padding    30
+yabai -m config bottom_padding 0
+yabai -m config left_padding   0
+yabai -m config right_padding  0
+yabai -m config window_gap     5
+
+yabai -m config mouse_modifier fn
+yabai -m config mouse_action1 move
+yabai -m config mouse_action2 resize
+
+yabai -m config focus_follows_mouse autofocus
+
+yabai -m config window_shadow float
+yabai -m config window_opacity off
+yabai -m config active_window_opacity 1.0
+yabai -m config normal_window_opacity 0.90
+
+yabai -m space 1 --label firefox
+yabai -m space 2 --label result
+yabai -m space 3 --label ide
+yabai -m space 4 --label social
+yabai -m space 5 --label spotify
+yabai -m space 6 --label playground
+yabai -m space 7 --label second-monitor
+
+yabai -m rule --add app="^Godot" title="^ludo" manage=off
+yabai -m rule --add app="^Godot" title="^callbreak" manage=off
+yabai -m rule --add app="^Godot" title!="Godot Engine" manage=off
+yabai -m rule --add app="^godot" title!="Godot Engine" manage=off
+yabai -m rule --add app="^Finder" manage=off
+yabai -m rule --add app="^System Settings" manage=off
+yabai -m rule --add app="^quemu-" manage=off

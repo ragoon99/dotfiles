@@ -1,0 +1,72 @@
+# Spaces
+alt - q : yabai -m space --focus prev || yabai -m space --focus last
+alt - e : yabai -m space --focus next || yabai -m space --focus first
+
+# Space Navigation
+alt - 1 : yabai -m space --focus firefox
+alt - 2 : yabai -m space --focus result
+alt - 3 : yabai -m space --focus ide
+alt - 4 : yabai -m space --focus social
+alt - 5 : yabai -m space --focus spotify
+alt - 6 : yabai -m space --focus playground
+alt - 7 : yabai -m space --focus second-monitor
+alt - 0 : yabai -m space --focus last
+
+# alt - c : yabai -m space --create
+# alt - d : yabai -m space --destroy
+
+# Navigation
+alt - h : yabai -m window --focus west
+alt - j : yabai -m window --focus south
+alt - k : yabai -m window --focus north
+alt - l : yabai -m window --focus east
+
+# Moving windows
+shift + alt - h : yabai -m window --warp west
+shift + alt - j : yabai -m window --warp south
+shift + alt - k : yabai -m window --warp north
+shift + alt - l : yabai -m window --warp east
+
+# Move focus container to workspace
+shift + alt - m : yabai -m window --space last; yabai -m space --focus last
+shift + alt - p : yabai -m window --space prev; yabai -m space --focus prev
+shift + alt - n : yabai -m window --space next; yabai -m space --focus next
+shift + alt - 1 : yabai -m window --space 1; yabai -m space --focus 1
+shift + alt - 2 : yabai -m window --space 2; yabai -m space --focus 2
+shift + alt - 3 : yabai -m window --space 3; yabai -m space --focus 3
+shift + alt - 4 : yabai -m window --space 4; yabai -m space --focus 4
+
+# Resize windows
+lctrl + alt - h : yabai -m window --resize left:-50:0; \
+                  yabai -m window --resize right:-50:0
+lctrl + alt - j : yabai -m window --resize bottom:0:50; \
+                  yabai -m window --resize top:0:50
+lctrl + alt - k : yabai -m window --resize top:0:-50; \
+                  yabai -m window --resize bottom:0:-50
+lctrl + alt - l : yabai -m window --resize right:50:0; \
+                  yabai -m window --resize left:50:0
+
+# Float / Unfloat window
+shift + alt - space : \
+    yabai -m window --toggle float; \
+    yabai -m window --toggle border
+
+# Restart Yabai
+shift + lctrl + alt - r : \
+    /usr/bin/env osascript <<< \
+      "display notification \"Restarting Yabai\" with title \"Yabai\""; \
+    launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
+
+# Make window native fullscreen
+alt - f         : yabai -m window --toggle zoom-fullscreen
+shift + alt - f : yabai -m window --toggle native-fullscreen
+
+lctrl + shift - s : yabai -m window --toggle sticky
+
+# Create and Destroy Spaces
+alt - c : yabai_space.sh -c
+alt - d : yabai_space.sh -d
+
+# Center Active Window
+lctrl + shift - c : yabai -m window --resize abs:800:400; yabai -m window --move abs:$(( ( $(yabai -m query --displays --display | jq '.frame.w') - 800 ) / 2 )):$(( ( $(yabai -m query --displays --display | jq '.frame.h') - 400 ) / 2 ))
+
