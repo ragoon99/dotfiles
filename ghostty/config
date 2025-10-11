@@ -9,13 +9,14 @@ font-feature=-dlig
 background-opacity = 0.9
 background-blur = 
 
-macos-titlebar-style = transparent
+macos-titlebar-style = hidden
 macos-icon = retro
 macos-icon-frame = plastic
+macos-non-native-fullscreen = true
 
 mouse-hide-while-typing = true
 
-window-decoration = true
+window-decoration = none
 window-inherit-working-directory = true
 window-theme = ghostty
 window-save-state = always

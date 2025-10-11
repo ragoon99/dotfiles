@@ -47,9 +47,7 @@ lctrl + alt - l : yabai -m window --resize right:50:0; \
                   yabai -m window --resize left:50:0
 
 # Float / Unfloat window
-shift + alt - space : \
-    yabai -m window --toggle float; \
-    yabai -m window --toggle border
+shift + alt - space : yabai -m window --toggle float; yabai -m window --toggle border
 
 # Restart Yabai
 shift + lctrl + alt - r : \
