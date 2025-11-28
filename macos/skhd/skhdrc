@@ -66,5 +66,6 @@ alt - c : yabai_space.sh -c
 alt - d : yabai_space.sh -d
 
 # Center Active Window
-lctrl + shift - c : yabai -m window --resize abs:800:400; yabai -m window --move abs:$(( ( $(yabai -m query --displays --display | jq '.frame.w') - 800 ) / 2 )):$(( ( $(yabai -m query --displays --display | jq '.frame.h') - 400 ) / 2 ))
+lctrl + shift - c : yabai -m window --resize abs:800:400; \
+	yabai -m window --move abs:$(( ( $(yabai -m query --displays --display | jq '.frame.w') - 800 ) / 2 )):$(( ( $(yabai -m query --displays --display | jq '.frame.h') - 400 ) / 2 ))
 

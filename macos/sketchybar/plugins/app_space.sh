@@ -16,7 +16,7 @@ update_icons() {
 
 	if [[ "$CURRENT_SID" == "$SID" ]]; then
 		create_icons "$CURRENT_SID"
-		BACKGROUND_COLOR=$HIGHLIGHT
+		BACKGROUND_COLOR=$(getcolor green)
 		COLOR=$BAR_COLOR
 		STYLE="Bold"
 	else
@@ -33,7 +33,7 @@ update_icons() {
 	#   PADDING_LABEL=$PADDINGS
 	# fi
 
-	echo $CURRENT_SID ">" $CURRENT_LABEL ">" $PADDING_LABEL
+	# echo $CURRENT_SID ">" $CURRENT_LABEL ">" $PADDING_LABEL
 
 	sketchybar --animate tanh 10 \
 		--set space.$SID icon.color=$COLOR \
@@ -41,7 +41,12 @@ update_icons() {
 		background.color=$BACKGROUND_COLOR \
 		background.height=18 \
 		label.font.style=$STYLE \
-		icon.padding_left=$PADDINGS
+		icon.padding_left=$PADDINGS \
+		label.padding_right=$PADDINGS
+}
+
+create_shortcut() {
+	local HELLO
 }
 
 create_label() {
@@ -52,38 +57,39 @@ create_label() {
 	local CURRENT_APP=$(echo "$QUERY" | jq -r '.[] | select(.["has-focus"] == true) | .app')
 	local LABEL BADGE
 
-	# if [[ $APPS ]]; then
-	#   export PADDING_LABEL=$PADDINGS
-	for APP in "${APPS[@]}"; do
-		# Add icon
-		LABEL+=$("$HOME/.config/sketchybar/plugins/app_icon.sh" "$APP")
-		# Set up badge
-		BADGE="$(set_badge $APP)"
-		# Add app name for currently focused app
-		if [[ "$APP" == "$CURRENT_APP" ]]; then
-			LABEL+=" $APP"
-		# For unfocused apps…
-		else
-			# Add a space if there is a badge
-			if [[ $BADGE ]]; then
-				LABEL+=" "
-			fi
-		fi
-		# Add badge
-		LABEL+="$BADGE"
-		# Add a space between labels if there is more than one app on a space
-		if ((${#APPS[@]} > 1)); then
-			LABEL+=" "
-		fi
-	done
-	# Remove trailing space if necessary
-	if [[ "$LABEL" =~ [[:space:]]$ ]]; then
-		LABEL="${LABEL%"${LABEL##*[![:space:]]}"}"
-	fi
-	# else
-	# export PADDING_LABEL=0
-	# LABEL=""
+	if [[ $APPS ]]; then
+		LABEL=$ICON_FULL
+		# export PADDING_LABEL=$PADDINGS
+	# for APP in "${APPS[@]}"; do
+	# 	# Add icon
+	# 	LABEL+=$("$HOME/.config/sketchybar/plugins/app_icon.sh" "$APP")
+	# 	# Set up badge
+	# 	BADGE="$(set_badge $APP)"
+	# 	# Add app name for currently focused app
+	# 	if [[ "$APP" == "$CURRENT_APP" ]]; then
+	# 		LABEL+=" $APP"
+	# 	# For unfocused apps…
+	# 	else
+	# 		# Add a space if there is a badge
+	# 		if [[ $BADGE ]]; then
+	# 			LABEL+=" "
+	# 		fi
+	# 	fi
+	# 	# Add badge
+	# 	LABEL+="$BADGE"
+	# 	# Add a space between labels if there is more than one app on a space
+	# 	if ((${#APPS[@]} > 1)); then
+	# 		LABEL+=" "
+	# 	fi
+	# done
+	# # Remove trailing space if necessary
+	# if [[ "$LABEL" =~ [[:space:]]$ ]]; then
+	# 	LABEL="${LABEL%"${LABEL##*[![:space:]]}"}"
 	# fi
+	else
+		export PADDING_LABEL=0
+		LABEL=$ICON_EMPTY
+	fi
 	echo $LABEL
 	unset IFS
 }
