@@ -6,15 +6,13 @@ log_debug() {
 }
 
 update_widget() {
-	PLAYER_STATE=$(osascript -e 'tell application "System Events" to if (name of processes) contains "Spotify" then tell application "Spotify" to get player state')
+	IS_PLAYING=$(media-control get | jq -r '.playing')
 
-	if [[ $PLAYER_STATE == "playing" ]]; then
-		INFOS=$(osascript -e 'tell application "Spotify" to if player state is playing then return "{\"name\":\"" & (name of current track) & "\",\"artist\":\"" & (artist of current track) & "\",\"album\":\"" & (album of current track) & "\"}"')
-
-		# log_debug $INFOS
+	if [[ $IS_PLAYING == "true" ]]; then
+		INFOS=$(media-control get)
 
 		CURRENT_ARTIST="$(echo "$INFOS" | jq -r '.artist')"
-		CURRENT_SONG="$(echo "$INFOS" | jq -r '.name // empty')"
+		CURRENT_SONG="$(echo "$INFOS" | jq -r '.title')"
 
 		args=(
 			drawing=on
@@ -29,10 +27,6 @@ update_widget() {
 		CURRENT_SONG=""
 		args=(drawing=off)
 	fi
-
-	# log_debug "CURRENT_ARTIST: $CURRENT_ARTIST"
-	# log_debug "PLAYER: $PLAYER"
-	# log_debug "PLAYER_STATE: $PLAYER_STATE"
 
 	sketchybar --set "$NAME" "${args[@]}"
 }

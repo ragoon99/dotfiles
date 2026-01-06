@@ -22,13 +22,13 @@ yabai -m config window_opacity off
 yabai -m config active_window_opacity 1.0
 yabai -m config normal_window_opacity 0.90
 
-yabai -m space 1 --label firefox
-yabai -m space 2 --label result
-yabai -m space 3 --label ide
+yabai -m space 1 --label web
+yabai -m space 2 --label docker
+yabai -m space 3 --label empty
 yabai -m space 4 --label social
 yabai -m space 5 --label spotify
-yabai -m space 6 --label playground
-yabai -m space 7 --label second-monitor
+yabai -m space 6 --label terminal
+yabai -m space 7 --label ide
 
 yabai -m rule --add app="^Godot" title="^ludo" manage=off
 yabai -m rule --add app="^Godot" title="^callbreak" manage=off
@@ -37,3 +37,4 @@ yabai -m rule --add app="^godot" title!="Godot Engine" manage=off
 yabai -m rule --add app="^Finder" manage=off
 yabai -m rule --add app="^System Settings" manage=off
 yabai -m rule --add app="^quemu-" manage=off
+yabai -m rule --add app="Enhancer for Youtube" manage=off

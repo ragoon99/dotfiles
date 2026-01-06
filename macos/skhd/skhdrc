@@ -3,13 +3,13 @@ alt - q : yabai -m space --focus prev || yabai -m space --focus last
 alt - e : yabai -m space --focus next || yabai -m space --focus first
 
 # Space Navigation
-alt - 1 : yabai -m space --focus firefox
-alt - 2 : yabai -m space --focus result
-alt - 3 : yabai -m space --focus ide
+alt - 1 : yabai -m space --focus web
+alt - 2 : yabai -m space --focus docker
+alt - 3 : yabai -m space --focus empty
 alt - 4 : yabai -m space --focus social
 alt - 5 : yabai -m space --focus spotify
-alt - 6 : yabai -m space --focus playground
-alt - 7 : yabai -m space --focus second-monitor
+alt - 6 : yabai -m space --focus terminal
+alt - 7 : yabai -m space --focus ide 
 alt - 0 : yabai -m space --focus last
 
 # alt - c : yabai -m space --create
