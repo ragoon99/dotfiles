@@ -84,7 +84,7 @@ local mappings = {
 	},
 	{
 		"n",
-		"<leader>pn",
+		"<leader>pna",
 		function()
 			vim.diagnostic.jump({ count = 1, float = true })
 		end,
@@ -92,9 +92,33 @@ local mappings = {
 	},
 	{
 		"n",
-		"<leader>pp",
+		"<leader>ppa",
 		function()
 			vim.diagnostic.jump({ count = -1, float = true })
+		end,
+		"Go To Previous Problem",
+	},
+	{
+		"n",
+		"<leader>pne",
+		function()
+			vim.diagnostic.jump({
+				count = 1,
+				float = true,
+				severity = vim.diagnostic.severity.ERROR,
+			})
+		end,
+		"Go To Next Problem",
+	},
+	{
+		"n",
+		"<leader>ppe",
+		function()
+			vim.diagnostic.jump({
+				count = -1,
+				float = true,
+				severity = vim.diagnostic.severity.ERROR,
+			})
 		end,
 		"Go To Previous Problem",
 	},
