@@ -131,12 +131,18 @@ return {
 
 			tele.setup({
 				pickers = pickers_table,
-				extenstions = {},
 				defaults = {
 					layout_strategy = "horizontal",
 					layout_config = { prompt_position = "top" },
 					sorting_strategy = "ascending",
 					path_display = { "shorten" },
+					file_ignore_patterns = {
+						"^node_modules/",
+						".git",
+						"^@girs/",
+						"*.pyc",
+						"__pycache__/",
+					},
 				},
 			})
 		end,

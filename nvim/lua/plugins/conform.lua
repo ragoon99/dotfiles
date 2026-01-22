@@ -47,9 +47,12 @@ return {
 		formatters_by_ft = {
 			lua = { "stylua" },
 			gdscript = { "gdformat" },
-			py = { "ruff" },
+			python = { "ruff" },
 			proto = { cmd = "buf format" },
 			javascript = {
+				"prettier",
+			},
+			typescript = {
 				"prettier",
 			},
 			javascriptreact = {
@@ -58,12 +61,39 @@ return {
 			typescriptreact = {
 				"prettier",
 			},
+			html = {
+				"prettier",
+			},
+			htmldjango = {
+				"djlint",
+			},
 			c = { "clang-format" },
 			bash = { "shfmt" },
 			sh = { "shfmt" },
 		},
 		formatters = {
 			prettier = { prepend_args = { "--use-tabs", "--tab-width=4" } },
+			ruff = {
+				prepend_args = {
+					"format",
+					"--stdin-filename",
+					"$FILENAME",
+					"-",
+					"--",
+					"--fix",
+				},
+				stdin = true,
+			},
+			djlint = {
+				args = {
+					'--linter_output_format "{filename}:{line}: {code} {message} {match}"',
+					"--max_attribute_length 10",
+					"--max_line_length 80",
+					'--blank-line-after-tag "load,extends,include"',
+					'--blank-line-before-tag "load,extends,include"',
+					"--line-break-after-multiline-tag",
+				},
+			},
 		},
 		-- format_on_save = {
 		-- 	-- These options will be passed to conform.format()

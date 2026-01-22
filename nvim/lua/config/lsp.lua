@@ -85,7 +85,18 @@ local lsp_configs = {
 		name = "pylsp",
 		cmd = { "pylsp" },
 		filetypes = { "python", "py" },
-		settings = {},
+		settings = {
+			pylsp = {
+				plugins = {
+					rope_autoimport = {
+						enabled = true,
+					},
+				},
+				signature = {
+					formatter = "ruff",
+				},
+			},
+		},
 		root_markers = {
 			"pyproject.toml",
 			"setup.py",
@@ -111,6 +122,18 @@ local lsp_configs = {
 			"typescript",
 			"javascriptreact",
 			"typescriptreact",
+		},
+		root_markers = {
+			".git",
+			".eslintrc",
+		},
+	},
+	csls = {
+		name = "cssls",
+		cmd = { "vscode-css-language-server", "--stdio" },
+		filetypes = {
+			"css",
+			"scss",
 		},
 		root_markers = {
 			".git",
@@ -162,6 +185,23 @@ local lsp_configs = {
 			"--log=verbose",
 		},
 		filetypes = { "c", "cpp", "h", "hpp" },
+	},
+	astro = {
+		name = "astro",
+		cmd = { "astro-ls", "--stdio" },
+		filetypes = { "astro" },
+		root_markers = { "astro.config.*", "package.json", ".git" },
+		init_options = {
+			typescript = {
+				tsdk = "/home/ragoon/.nvm/versions/node/v20.16.0/lib/node_modules/typescript/lib",
+			},
+		},
+	},
+	phpls = {
+		name = "phpls",
+		cmd = { "intelephense", "--stdio" },
+		filetypes = { "php" },
+		root_markers = { ".git", "composer.json" },
 	},
 }
 
