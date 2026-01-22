@@ -31,5 +31,3 @@ quit-after-last-window-closed = false
 
 keybind = super+ctrl+p=scroll_page_up
 keybind = super+ctrl+n=scroll_page_down
-
-command = ~/scripts/tmux_session.sh
