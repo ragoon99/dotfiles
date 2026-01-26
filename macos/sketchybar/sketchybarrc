@@ -18,7 +18,7 @@ sketchybar --bar "${bar[@]}" --default "${item_defaults[@]}"
 # Left
 source "$ITEM_DIR/apple.sh"
 # source "$ITEM_DIR/yabai.sh"
-source "$ITEM_DIR/spacer.sh" 1 left
+# source "$ITEM_DIR/spacer.sh" 1 left
 # source "$ITEM_DIR/spaces_simple.sh"
 source "$ITEM_DIR/spaces.sh"
 
@@ -47,12 +47,10 @@ source "$ITEM_DIR/battery.sh"
 source "$ITEM_DIR/music.sh" right
 
 # Brackets '/space\..*/'
-sketchybar --add bracket left.side '/space\..*/' \
-	--set left.side "${bracket_defaults[@]}" \
-	--add bracket status_icons volume_icon volume wifi date clock charging_icon battery \
+sketchybar --add bracket status_icons volume_icon volume wifi date clock charging_icon battery \
 	--set status_icons "${bracket_defaults[@]}"
-# --add bracket notifications weather aqi reminders messages mail brew                   \
-# --set notifications "${bracket_defaults[@]}"                                          \
 
 sketchybar --hotload on
 sketchybar --update
+
+sketchybar --bar font_smoothing=true

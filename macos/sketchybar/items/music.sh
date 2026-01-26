@@ -21,5 +21,4 @@ music=(
 
 sketchybar \
 	--add item music $1 \
-	--set music "${music[@]}" \
-	click_script="yabai -m query --windows | jq '.[] | select(.app == \"Spotify\") | .space' | xargs yabai -m space --focus"
+	--set music "${music[@]}"

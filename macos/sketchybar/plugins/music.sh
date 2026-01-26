@@ -28,7 +28,7 @@ update_widget() {
 		args=(drawing=off)
 	fi
 
-	sketchybar --set "$NAME" "${args[@]}"
+	sketchybar --set "$NAME" "${args[@]}" click_script="aerospace workspace 5"
 }
 
 # Main event handler
