@@ -13,57 +13,57 @@ SSID="$(echo "$CURRENT_WIFI" | grep -o "SSID : .*" | sed 's/^SSID : //' | tail -
 # CURR_TX="$(echo "$CURRENT_WIFI" | grep -o "lastTxRate: .*" | sed 's/^lastTxRate: //')"
 
 if [[ $IS_VPN != "Disconnected" ]]; then
-  ICON_COLOR=$HIGHLIGHT
-  ICON=$ICON_VPN
+	ICON_COLOR=$HIGHLIGHT
+	ICON=$ICON_VPN
 elif [[ $SSID != "" ]]; then
-  ICON_COLOR=$(getcolor white)
-  ICON=$ICON_WIFI
+	ICON_COLOR=$(getcolor white)
+	ICON=$ICON_WIFI
 elif [[ $CURRENT_WIFI = "AirPort: Off" ]]; then
-  ICON=􀐾
+	ICON=􀐾
 else
-  ICON_COLOR=$(getcolor white 25)
-  ICON=$ICON_WIFI_OFF
+	ICON_COLOR=$(getcolor white 25)
+	ICON=$ICON_WIFI_OFF
 fi
 
 render_bar_item() {
-  # DRAWING=$([ "$(cat /tmp/sketchybar_sender)" == "focus_on" ] && echo "off" || echo "on")
-  sketchybar --set $NAME \
-    icon.color=$ICON_COLOR \
-    icon=$ICON \
-    drawing=on
+	# DRAWING=$([ "$(cat /tmp/sketchybar_sender)" == "focus_on" ] && echo "off" || echo "on")
+	sketchybar --set $NAME \
+		icon.color=$ICON_COLOR \
+		icon=$ICON \
+		drawing=on
 }
 
 render_popup() {
-  if [ "$SSID" != "" ]; then
-    args=(
-      --set wifi.ssid label="$SSID" icon=$ICON_WIFI
-      --set wifi.ipaddress label="$IP_ADDRESS" icon="IP"
-      click_script="printf $IP_ADDRESS | pbcopy;sketchybar --set wifi popup.drawing=toggle"
-    )
-  else
-    args=(
-      --set wifi.ssid label="Not connected"
-      --set wifi.ipaddress label="No IP"
-      )
-  fi
+	if [ "$SSID" != "" ]; then
+		args=(
+			--set wifi.ssid label="$SSID" icon=$ICON_WIFI
+			--set wifi.ipaddress label="$IP_ADDRESS" icon="IP"
+			click_script="printf $IP_ADDRESS | pbcopy;sketchybar --set wifi popup.drawing=toggle"
+		)
+	else
+		args=(
+			--set wifi.ssid label="Not connected"
+			--set wifi.ipaddress label="No IP"
+		)
+	fi
 
-  sketchybar "${args[@]}" >/dev/null
+	sketchybar "${args[@]}" >/dev/null
 }
 
 update() {
-  render_bar_item
-  render_popup
+	render_bar_item
+	render_popup
 }
 
 popup() {
-  sketchybar --set "$NAME" popup.drawing="$1"
+	sketchybar --set "$NAME" popup.drawing="$1"
 }
 
 case "$SENDER" in
 "routine" | "forced" | "wifi_change")
-  update
-  ;;
+	update
+	;;
 "mouse.clicked")
-  popup toggle
-  ;;
+	popup toggle
+	;;
 esac

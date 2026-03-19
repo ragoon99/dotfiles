@@ -1,15 +1,4 @@
-# Load global styles, colors and icons
 source "$CONFIG_DIR/globalstyles.sh"
-
-log_debug() {
-	echo "$(date '+%Y-%m-%d %H:%M:%S') [DEBUG] $1"
-}
-
-popup_widget() {
-	sketchybar --set "music" popup.drawing=on \
-		popup.align=left \
-		"${menu_defaults[@]}"
-}
 
 update_widget() {
 	IS_PLAYING=$(media-control get | jq -r '.playing')
@@ -34,17 +23,11 @@ update_widget() {
 		args=(drawing=off)
 	fi
 
-	popup_widget
-	sketchybar --set "$NAME" "${args[@]}"
+	sketchybar --set "$NAME" "${args[@]}" click_script="aerospace workspace 5"
 }
 
-# Main event handler
 case "$SENDER" in
-"routine" | "forced" | "spotify_track_changed")
+"spotify_track_changed")
 	update_widget
-	;;
-*)
-	log_debug "Unknown sender: $SENDER"
-	exit 1
 	;;
 esac

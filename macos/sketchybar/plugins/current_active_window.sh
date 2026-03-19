@@ -9,7 +9,7 @@ case "$SENDER" in
 	if [[ $FOCUSED_APP ]]; then
 		sketchybar --set current_active_window \
 			background.color=$(getcolor green) \
-			label="$WINDOW_TITLE | $FOCUSED_APP" \
+			label="$FOCUSED_APP" \
 			label.color=$(getcolor black) \
 			label.font.style="Regular" \
 			label.padding_left=8 \

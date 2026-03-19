@@ -15,10 +15,11 @@ music=(
 	script="$PLUGIN_DIR/music.sh"
 	click_script="$PLUGIN_DIR/music.sh"
 	updates=on
-	update_freq=10
-	--subscribe volume_change media_change mouse.clicked
+	update_freq=30
+	--subscribe music mouse.clicked spotify_track_changed
 )
 
 sketchybar \
+	--add event spotify_track_changed "com.spotify.client.PlaybackStateChanged" \
 	--add item music $1 \
 	--set music "${music[@]}"

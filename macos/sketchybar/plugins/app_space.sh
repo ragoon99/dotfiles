@@ -31,8 +31,9 @@ update_icons() {
 		background.color=$BACKGROUND_COLOR \
 		background.height=18 \
 		label.font.style=$STYLE \
-		icon.padding_left=$PADDINGS \
-		label.padding_right=$PADDINGS
+		label.align="center" \
+		label.padding_right=10 \
+		label.padding_left=8
 }
 
 mouse_clicked() {
