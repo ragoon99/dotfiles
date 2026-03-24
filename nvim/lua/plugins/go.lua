@@ -1,5 +1,6 @@
 return {
 	"ray-x/go.nvim",
+	event = "BufEnter *.go",
 	dependencies = { -- optional packages
 		"ray-x/guihua.lua",
 	},

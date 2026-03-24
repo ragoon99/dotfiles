@@ -3,6 +3,7 @@ return {
 	dependencies = {
 		"rafamadriz/friendly-snippets",
 	},
+	event = "InsertEnter",
 	version = "*",
 
 	---@module 'blink.cmp'

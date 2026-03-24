@@ -106,6 +106,7 @@ return {
 	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 	{
 		"nvim-telescope/telescope.nvim",
+		event = "VeryLazy",
 		config = function()
 			local tele = require("telescope")
 			local pickers_table = {
@@ -212,6 +213,5 @@ return {
 				desc = "Previous Telescope Picker",
 			},
 		},
-		lazy = false,
 	},
 }

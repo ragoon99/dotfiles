@@ -1,5 +1,6 @@
 return {
 	"yorickpeterse/nvim-window",
+	event = "VeryLazy",
 	keys = {
 		{
 			"<leader><C-w>",
