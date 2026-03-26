@@ -144,10 +144,21 @@ local mappings = {
 		"Reload Config",
 	},
 	{ "n", "<localleader><F6>", "<cmd>restart<cr>", "Restart nvim" },
+	{ "n", "tn", "<cmd>tabnew<cr>", "Create New Tab", true },
+	{ "n", "tc", "<cmd>tabclose<cr>", "Close Current Tab", true },
+	{ "n", "tg1", "<cmd>tabnext 1<cr>", "GoTo Tab 1", true },
+	{ "n", "tg2", "<cmd>tabnext 2<cr>", "GoTo Tab 2", true },
+	{ "n", "tg3", "<cmd>tabnext 3<cr>", "GoTo Tab 3", true },
+	{ "n", "tg4", "<cmd>tabnext 4<cr>", "GoTo Tab 4", true },
+	{ "n", "tg5", "<cmd>tabnext 5<cr>", "GoTo Tab 5", true },
+
 	{ "t", "<esc>", "<C-\\><C-n>", "Terminal Normal Mode" },
+
 	{ "i", "qv", "<esc>", "Escape", true },
+
 	{ { "n", "i" }, "<C-\\>", "zo", "Open Code Fold" },
 	{ { "n", "i" }, "<C-/>", "zc", "Fold Code" },
+
 	{ { "n", "i", "v" }, "<C-s>", "<esc><cmd>w<cr>", "Save File", true },
 	{
 		{ "n", "i", "v" },
@@ -157,6 +168,7 @@ local mappings = {
 		true,
 	},
 	{ { "n", "i", "v" }, "<C-.>", "<esc><cmd>bnext<cr>", "Next Buffer", true },
+
 	{ { "n", "v" }, "<localleader>y1", '"1yvi"', "Yank To Register 1" },
 	{ { "n", "v" }, "<localleader>y2", '"2yvi"', "Yank To Register 2" },
 	{ { "n", "v" }, "<localleader>p1", "1p", "Paste From Register 1" },
