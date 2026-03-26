@@ -16,6 +16,19 @@ date=(
 	click_script="open -a Calendar.app"
 )
 
+nepalidate=(
+	icon=$ICON_CALENDAR
+	icon.drawing=off
+	icon.font.size=6
+	icon.padding_right=1
+	icon.color=$(getcolor yellow)
+	icon.y_offset=1.5
+	label.font="$FONT:Semibold:9"
+	label.padding_right=4
+	update_freq=3600
+	script="$PLUGIN_DIR/nepalidate.sh"
+)
+
 clock=(
 	"${menu_defaults[@]}"
 	label.padding_left=$PADDINGS
@@ -54,4 +67,6 @@ sketchybar \
 	--subscribe clock system_woke \
 	mouse.entered \
 	mouse.exited \
-	mouse.exited.global
+	mouse.exited.global \
+	--add item nepalidate right \
+	--set nepalidate "${nepalidate[@]}"
