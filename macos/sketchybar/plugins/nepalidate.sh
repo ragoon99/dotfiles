@@ -1,12 +1,10 @@
 #!/bin/bash
 
 render_item() {
-	API="https://calendar.bloggernepal.com/api/today"
-	RESULT=$(curl -s $API | jq -r .res)
-
-	TODAY=$(echo $RESULT | jq -r '.days[] | select(.tag == "today") | .bs')
-	MONTH=$(echo $RESULT | jq -r .name)
-	YEAR=$(echo $RESULT | jq -r .year)
+	DATE=~/dotfiles/scripts/nepalidate.sh
+	TODAY=$($DATE | jq -r '.day')
+	MONTH=$($DATE | jq -r '.month')
+	YEAR=$($DATE | jq -r '.year')
 
 	sketchybar --set $NAME label="$YEAR $MONTH $TODAY" \
 		--set date icon.drawing=$DRAWING \
