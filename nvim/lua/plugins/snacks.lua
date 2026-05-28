@@ -105,7 +105,24 @@ return {
 	lazy = false,
 	---@type snacks.Config
 	opts = {
+		explorer = { enabled = false },
+		indent = { enabled = false },
+		input = { enabled = false },
+		image = { enabled = false },
+		keymap = { enabled = false },
+		picker = { enabled = false },
+		scope = { enabled = false },
+		scroll = { enabled = false },
+		statuscolumn = { enabled = false },
+		terminal = { enabled = false },
+		toggle = { enabled = false },
+		win = { enabled = false },
+		words = { enabled = false },
+		zen = { enabled = false },
+
 		bigfile = { enabled = true },
+		quickfile = { enabled = true },
+
 		dashboard = {
 			enabled = true,
 			preset = {

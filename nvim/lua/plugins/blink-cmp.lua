@@ -1,68 +1,72 @@
 return {
 	"saghen/blink.cmp",
 	dependencies = {
+		"saghen/blink.lib",
 		"rafamadriz/friendly-snippets",
+		"saghen/blink.compat",
+		{
+			"supermaven-inc/supermaven-nvim",
+			opts = {
+				keymaps = {
+					accept_suggestion = nil,
+					clear_suggestion = "<C-]>",
+					accept_word = "<C-l>",
+				},
+				ignore_filetypes = { "bigfile", "snacks_input", "oil" },
+				disable_inline_completion = false, -- disables inline completion for use with cmp
+				disable_keymaps = false, -- disables built in keymaps for more manual control
+			},
+		},
 	},
 	event = "InsertEnter",
-	version = "*",
+	-- version = "*",
+	branch = "main",
+	build = function()
+		require("blink.cmp").build():wait(60000)
+	end,
+
+	enabled = function()
+		local filetype = vim.bo.filetype
+		if filetype == "oil" then
+			return false
+		end
+
+		-- Keep it disabled for standard non-file buffers if desired
+		if vim.tbl_contains({ "nofile", "prompt", "terminal" }, buftype) then
+			return false
+		end
+
+		return true
+	end,
 
 	---@module 'blink.cmp'
 	---@type blink.cmp.Config
 	opts = {
 		keymap = {
-
-			preset = "default",
-			["<C-1>"] = {
+			preset = "none",
+			["<C-Space>"] = { "show" },
+			["<C-n>"] = { "select_next" },
+			["<C-p>"] = { "select_prev" },
+			["<C-y>"] = { "select_and_accept" },
+			["<C-k>"] = { "show_documentation" },
+			["<C-X>"] = {
 				function(cmp)
-					cmp.accept({ index = 1 })
+					return cmp.show({ providers = { "codeium" } })
 				end,
 			},
-			["<C-2>"] = {
+			["<Tab>"] = {
 				function(cmp)
-					cmp.accept({ index = 2 })
+					-- Check if supermaven is installed and has a visible suggestion
+					local ok, supermaven =
+						pcall(require, "supermaven-nvim.completion_preview")
+					if ok and supermaven.has_suggestion() then
+						vim.schedule(supermaven.on_accept_suggestion)
+						return true -- Break the chain, do not trigger fallback blink behavior
+					end
 				end,
+				"select_next",
+				"fallback",
 			},
-			["<C-3>"] = {
-				function(cmp)
-					cmp.accept({ index = 3 })
-				end,
-			},
-			["<C-4>"] = {
-				function(cmp)
-					cmp.accept({ index = 4 })
-				end,
-			},
-			["<C-5>"] = {
-				function(cmp)
-					cmp.accept({ index = 5 })
-				end,
-			},
-			["<C-6>"] = {
-				function(cmp)
-					cmp.accept({ index = 6 })
-				end,
-			},
-			["<C-7>"] = {
-				function(cmp)
-					cmp.accept({ index = 7 })
-				end,
-			},
-			["<C-8>"] = {
-				function(cmp)
-					cmp.accept({ index = 8 })
-				end,
-			},
-			["<C-9>"] = {
-				function(cmp)
-					cmp.accept({ index = 9 })
-				end,
-			},
-			["<C-0>"] = {
-				function(cmp)
-					cmp.accept({ index = 10 })
-				end,
-			},
-			["<C-k>"] = {},
 		},
 		appearance = {
 			nerd_font_variant = "mono",
@@ -74,6 +78,14 @@ return {
 				"snippets",
 				"buffer",
 				"cmdline",
+				"supermaven",
+			},
+			providers = {
+				supermaven = {
+					name = "supermaven",
+					module = "blink.compat.source",
+					async = true,
+				},
 			},
 		},
 		completion = {
