@@ -1,0 +1,28 @@
+[modules]
+left = [ "Workspaces", "SystemInfo" ]
+center = [ "WindowTitle" ]
+right = [ "MediaPlayer", [ "Tempo", "Privacy", "Settings" ] ]
+
+[system_info]
+indicators = [ "Cpu", "Memory", "Temperature", "DownloadSpeed", "UploadSpeed" ]
+
+[appearance]
+font_name = "FiraCode Nerd Font Mono"
+style = "Islands"
+
+success_color = "#a6e3a1"
+text_color = "#CAD593"
+
+workspace_colors = [ "#87A330", "#CAD593", "#CAD593" ]
+
+[appearance.primary_color]
+base = "#fab387"
+
+[appearance.secondary_color]
+base = "#11111b"
+
+[appearance.background_color]
+base = "#232323"
+
+[appearance.danger_color]
+base = "#f38ba8"
