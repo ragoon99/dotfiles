@@ -152,6 +152,9 @@ local mappings = {
 	{ "n", "tg4", "<cmd>tabnext 4<cr>", "GoTo Tab 4", true },
 	{ "n", "tg5", "<cmd>tabnext 5<cr>", "GoTo Tab 5", true },
 
+	{ "n", "<C-Space>", "van", "Incremental Selection", true },
+	{ "v", "<C-Space>", "an", "Incremental Selection", true },
+
 	{ "t", "<esc>", "<C-\\><C-n>", "Terminal Normal Mode" },
 
 	{ "i", "qv", "<esc>", "Escape", true },
