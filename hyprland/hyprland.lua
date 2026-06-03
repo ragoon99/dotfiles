@@ -1,3 +1,8 @@
+hl.config({
+	debug = {
+		disable_logs = false,
+	},
+})
 ------------------
 ---- MONITORS ----
 ------------------
@@ -22,18 +27,6 @@ browser = "chromium"
 statusbar = "ashell"
 plugins = "hyprpm -n reload"
 
--------------------
----- AUTOSTART ----
--------------------
-
-require("autostart")
-
--------------------------------
----- ENVIRONMENT VARIABLES ----
--------------------------------
-
-require("env")
-
 -----------------------
 ----- PERMISSIONS -----
 -----------------------
@@ -48,7 +41,17 @@ hl.config({
 	},
 })
 
-hl.permission("/usr/(bin|local/bin)/hyprpm", "plugin", "allow")
+-------------------
+---- AUTOSTART ----
+-------------------
+
+require("autostart")
+
+-------------------------------
+---- ENVIRONMENT VARIABLES ----
+-------------------------------
+
+require("env")
 
 -----------------------
 ---- LOOK AND FEEL ----
@@ -94,7 +97,14 @@ require("keybinds")
 ---------- PLUGINS -------------
 --------------------------------
 
-require("plugins")
+hl.permission({
+	binary = "/usr/(bin|local/bin)/hyprpm",
+	type = "plugin",
+	mode = "allow",
+})
+
+local plugins = require("plugins")
+plugins.load_hyprexpo()
 
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----
