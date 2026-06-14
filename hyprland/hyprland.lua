@@ -26,6 +26,7 @@ menu = "rofi -show combi"
 browser = "chromium"
 statusbar = "ashell"
 plugins = "hyprpm -n reload"
+wallpaper_service = "hyprpaper"
 
 -----------------------
 ----- PERMISSIONS -----
