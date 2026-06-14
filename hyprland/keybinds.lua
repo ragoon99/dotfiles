@@ -63,3 +63,7 @@ hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = tru
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
 
 hl.bind(mainMod .. " + b", hl.dsp.exec_cmd("pkill -SIGUSR1 -f ashell"))
+
+-- Waybar
+hl.bind("ALT + SHIFT + h", hl.dsp.exec_cmd("pkill -SIGUSR1 -f waybar"))
+hl.bind("ALT + SHIFT + r", hl.dsp.exec_cmd("pkill -SIGUSR2 -f waybar"))
