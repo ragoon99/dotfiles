@@ -54,22 +54,9 @@ hl.window_rule({
 hl.window_rule({
 	name = "godot",
 	match = {
-		class = "Godot",
-		title = "^((?!DEBUG).)*$",
-		initial_class = "^Godot",
+		initial_title = "Godot",
+		initial_class = "negative:Godot", -- not the editor itself
 	},
-
-	float = false,
-})
-
-hl.window_rule({
-	name = "godot-debug-window",
-	match = {
-		class = "Godot",
-		title = "DEBUG",
-		initial_class = "^Godot",
-	},
-
 	float = true,
 })
 
